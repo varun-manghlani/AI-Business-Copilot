@@ -1,0 +1,212 @@
+.sidebar {
+  width: 280px;
+  min-width: 280px;
+  height: 100vh;
+
+  background: #171717;
+  border-right: 1px solid #2b2b2b;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 18px;
+
+  overflow: hidden;
+}
+
+.new-chat-btn {
+  width: 100%;
+
+  padding: 14px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: #2563eb;
+  color: white;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+.new-chat-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+}
+
+.conversation-list {
+  flex: 1;
+
+  margin-top: 22px;
+
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+
+  padding-right: 6px;
+}
+
+.conversation-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.conversation-list::-webkit-scrollbar-thumb {
+  background: #3b3b3b;
+  border-radius: 20px;
+}
+
+.conversation-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 14px;
+
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  transition: 0.25s;
+}
+
+.conversation-item:hover {
+  background: #2b2b2b;
+}
+
+.conversation-item.active {
+  background: #303030;
+}
+
+.conversation-title {
+  flex: 1;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.delete-btn {
+  opacity: 0;
+
+  background: transparent;
+  border: none;
+
+  color: #b3b3b3;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.conversation-item:hover .delete-btn {
+  opacity: 1;
+}
+
+.delete-btn:hover {
+  color: #ff5b5b;
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+}
+
+.sidebar-divider {
+  border: none;
+  border-top: 1px solid #2f2f2f;
+
+  margin: 18px 0;
+}
+
+.sidebar-menu {
+  padding: 12px 14px;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  font-size: 15px;
+  font-weight: 500;
+
+  transition: 0.25s;
+
+  margin-bottom: 6px;
+}
+
+.sidebar-menu:hover {
+  background: #2b2b2b;
+}
+
+.active-menu {
+  background: #303030;
+}
+
+.logout-menu:hover {
+  background: #422020;
+  color: #ff7373;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 14px;
+
+  border-radius: 12px;
+
+  transition: 0.25s;
+
+  cursor: default;
+}
+
+.user-profile:hover {
+  background: #242424;
+}
+
+.user-avatar {
+  width: 46px;
+  height: 46px;
+
+  border-radius: 50%;
+
+  background: #2563eb;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.user-info {
+  flex: 1;
+}
+
+.user-name {
+  color: white;
+
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.user-role {
+  color: #9ca3af;
+
+  font-size: 13px;
+
+  margin-top: 4px;
+}

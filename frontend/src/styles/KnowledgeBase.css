@@ -1,0 +1,34 @@
+.knowledge-container {
+    display: flex;
+    flex-direction: column;
+
+    height: calc(100vh - 74px);
+}
+
+.knowledge-toolbar {
+    padding: 30px 40px;
+
+    border-bottom: 1px solid #333;
+
+    flex-shrink: 0;
+
+    background: #202123;
+}
+
+.knowledge-description {
+    color: #bdbdbd;
+    margin-bottom: 20px;
+    font-size: 17px;
+}
+
+.documents-container {
+    flex: 1;
+
+    overflow-y: auto;
+
+    padding: 30px 40px;
+}
+
+.empty-documents {
+    color: #999;
+}

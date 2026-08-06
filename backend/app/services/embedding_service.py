@@ -1,0 +1,14 @@
+from sentence_transformers import SentenceTransformer
+
+# Load model only once
+model = SentenceTransformer("all-MiniLM-L6-v2")
+
+
+def create_embeddings(chunks):
+    """
+    Generate embeddings for all chunks.
+    """
+
+    embeddings = model.encode(chunks)
+
+    return embeddings
