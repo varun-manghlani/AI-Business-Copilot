@@ -39,3 +39,15 @@ frontend/dist/
 
 # Windows
 Thumbs.db
+
+# Database
+backend/business_copilot.db
+
+# Uploaded documents
+backend/app/knowledge_base/documents/
+
+# Chroma vector database
+backend/app/knowledge_base/vector_db/
+
+# Metadata (optional)
+backend/app/knowledge_base/metadata.json
