@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 import { apiFetch } from "../../services/api";
 
 import "../../styles/ToolPages.css";
+import { usePage } from "../../context/PageContext";
 
 function EmailGenerator({ setActivePage }) {
   const [recipient, setRecipient] = useState("");
@@ -14,6 +15,24 @@ function EmailGenerator({ setActivePage }) {
   const [generatedEmail, setGeneratedEmail] = useState("");
 
   const [loading, setLoading] = useState(false);
+
+  const { voiceResult, setVoiceResult } = usePage();
+
+  useEffect(() => {
+    if (!voiceResult) return;
+
+    if (voiceResult.action !== "email") return;
+
+    setRecipient(voiceResult.recipient || "");
+    setSubject(voiceResult.subject || "");
+    setPurpose(voiceResult.purpose || "");
+    setTone(voiceResult.tone || "Professional");
+
+    setGeneratedEmail(voiceResult.email || "");
+
+    // Clear after loading so refreshes don't reuse old data
+    setVoiceResult(null);
+  }, [voiceResult]);
 
   async function generateEmail() {
     if (!recipient || !subject || !purpose) {

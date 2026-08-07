@@ -1,4 +1,5 @@
 import "../styles/Sidebar.css";
+import { usePage } from "../context/PageContext";
 
 function Sidebar({
   conversations,
@@ -6,11 +7,11 @@ function Sidebar({
   createNewChat,
   deleteChat,
   setCurrentConversationId,
-  activePage,
-  setActivePage,
   user,
   setUser,
 }) {
+  const { activePage, setActivePage } = usePage();
+
   return (
     <div className="sidebar">
       <button
@@ -57,11 +58,20 @@ function Sidebar({
 
             <div
               className={`sidebar-menu ${
+                activePage === "analytics" ? "active-menu" : ""
+              }`}
+              onClick={() => setActivePage("analytics")}
+            >
+              📊 Analytics
+            </div>
+
+            <div
+              className={`sidebar-menu ${
                 activePage === "knowledge" ? "active-menu" : ""
               }`}
               onClick={() => setActivePage("knowledge")}
             >
-              📚 Knowledge Base
+              📚 Knowledge
             </div>
 
             <div

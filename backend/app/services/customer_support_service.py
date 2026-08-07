@@ -1,12 +1,18 @@
+from sqlalchemy.orm import Session
 from langchain_ollama import ChatOllama
+
+from app.services.ai_usage_service import save_ai_usage
 
 llm = ChatOllama(
     model="llama3.2:3b"
 )
 
 
-def generate_customer_response(request):
-
+def generate_customer_response(
+    request,
+    db: Session,
+    user_id: int,
+):
     prompt = f"""
 You are an experienced customer support representative.
 
@@ -28,6 +34,13 @@ Return only the response.
 """
 
     response = llm.invoke(prompt)
+
+    # Save analytics
+    save_ai_usage(
+        db=db,
+        user_id=user_id,
+        tool_name="support",
+    )
 
     return {
         "response": response.content

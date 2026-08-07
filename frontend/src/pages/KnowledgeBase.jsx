@@ -59,7 +59,7 @@ function KnowledgeBase() {
 
   return (
     <>
-      <div className="header">📚 Knowledge Base</div>
+      <div className="header">📚 Knowledge </div>
 
       <div className="knowledge-container">
         <div className="knowledge-toolbar">

@@ -11,16 +11,17 @@ import EmailGenerator from "./pages/tools/EmailGenerator";
 import ReportGenerator from "./pages/tools/ReportGenerator";
 import MeetingSummary from "./pages/tools/MeetingSummary";
 import CustomerSupport from "./pages/tools/CustomerSupport";
+import Analytics from "./pages/Analytics";
+import VoiceAssistant from "./components/VoiceAssistant";
+import { usePage } from "./context/PageContext";
 
 function App() {
+  const { activePage, setActivePage } = usePage();
   const [input, setInput] = useState("");
   const [conversations, setConversations] = useState([]);
   const [messages, setMessages] = useState([]);
   const [currentConversationId, setCurrentConversationId] = useState(null);
   const [isStreaming, setIsStreaming] = useState(false);
-  const [activePage, setActivePage] = useState(
-    localStorage.getItem("activePage") || "chat",
-  );
   const [user, setUser] = useState(null);
   const [loadingAuth, setLoadingAuth] = useState(true);
 
@@ -57,7 +58,12 @@ function App() {
 
       setUser(data);
 
-      if (data.role !== "admin" && activePage === "knowledge") {
+      if (
+        data.role !== "admin" &&
+        (activePage === "knowledge" ||
+          activePage === "settings" ||
+          activePage === "analytics")
+      ) {
         setActivePage("chat");
       }
 
@@ -272,8 +278,6 @@ function App() {
         createNewChat={createNewChat}
         deleteChat={deleteChat}
         setCurrentConversationId={setCurrentConversationId}
-        activePage={activePage}
-        setActivePage={setActivePage}
         user={user}
         setUser={setUser}
       />
@@ -293,6 +297,8 @@ function App() {
 
         {activePage === "settings" && <Settings />}
 
+        {activePage === "analytics" && <Analytics />}
+
         {activePage === "email-generator" && (
           <EmailGenerator setActivePage={setActivePage} />
         )}
@@ -309,6 +315,7 @@ function App() {
           <CustomerSupport setActivePage={setActivePage} />
         )}
       </div>
+      <VoiceAssistant user={user} />
     </div>
   );
 }

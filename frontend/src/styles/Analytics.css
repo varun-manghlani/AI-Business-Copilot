@@ -1,0 +1,161 @@
+.analytics-page {
+  padding: 30px;
+  color: white;
+  overflow-y: auto;
+}
+
+.analytics-page h1 {
+  font-size: 38px;
+  font-weight: 700;
+  margin-bottom: 35px;
+}
+
+/* ================= KPI Cards ================= */
+
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 22px;
+}
+
+.analytics-card {
+  background: linear-gradient(145deg, #1d1f23, #25282d);
+  border: 1px solid #31353d;
+  border-radius: 18px;
+  padding: 22px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.analytics-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(90deg, #3b82f6, #06b6d4);
+}
+
+.analytics-card:hover {
+  transform: translateY(-6px);
+  border-color: #4f8cff;
+  box-shadow: 0 15px 35px rgba(79, 140, 255, 0.18);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.card-header span {
+  font-size: 17px;
+  font-weight: 600;
+  color: #d8d8d8;
+}
+
+.card-icon {
+  font-size: 24px;
+}
+
+.analytics-card h2 {
+  font-size: 42px;
+  margin: 0;
+}
+
+.analytics-card p {
+  margin-top: 10px;
+  color: #9ca3af;
+}
+
+/* Icon Colors */
+
+.users {
+  color: #8b5cf6;
+}
+
+.chat {
+  color: #3b82f6;
+}
+
+.ai {
+  color: #22c55e;
+}
+
+.docs {
+  color: #f59e0b;
+}
+
+.email {
+  color: #ec4899;
+}
+
+.report {
+  color: #06b6d4;
+}
+
+.meeting {
+  color: #f97316;
+}
+
+.support {
+  color: #10b981;
+}
+
+/* ================= Charts ================= */
+
+.analytics-section {
+  margin-top: 40px;
+}
+
+.charts-grid {
+  width: 100%;
+}
+
+.chart-card {
+  width: 100%;
+  background: linear-gradient(145deg, #1d1f23, #25282d);
+  border: 1px solid #31353d;
+  border-radius: 18px;
+  padding: 25px;
+  transition: all 0.3s ease;
+}
+
+.chart-card:hover {
+  border-color: #4f8cff;
+  box-shadow: 0 15px 35px rgba(79, 140, 255, 0.18);
+}
+
+.chart-card h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* ================= Recent Activity ================= */
+
+.recent-activity-card {
+  margin-top: 35px;
+  background: linear-gradient(145deg, #1d1f23, #25282d);
+  border: 1px solid #31353d;
+  border-radius: 18px;
+  padding: 25px;
+}
+
+.activity-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+  border-bottom: 1px solid #333;
+}
+
+.activity-item:last-child {
+  border-bottom: none;
+}
+
+.activity-time {
+  color: #9ca3af;
+}

@@ -1,28 +1,37 @@
+from sqlalchemy.orm import Session
 from langchain_ollama import ChatOllama
+
+from app.services.ai_usage_service import save_ai_usage
 
 llm = ChatOllama(
     model="llama3.2:3b"
 )
 
 
-def generate_report(request):
-
+def generate_report(
+    report_type: str,
+    project_name: str,
+    details: str,
+    audience: str,
+    db: Session,
+    user_id: int,
+):
     prompt = f"""
 You are a professional business analyst.
 
 Generate a detailed business report.
 
 Report Type:
-{request.report_type}
+{report_type}
 
 Project:
-{request.project_name}
+{project_name}
 
 Details:
-{request.details}
+{details}
 
 Audience:
-{request.audience}
+{audience}
 
 Format the report professionally with:
 
@@ -36,6 +45,13 @@ Return only the report.
 """
 
     response = llm.invoke(prompt)
+
+    # Save analytics
+    save_ai_usage(
+        db=db,
+        user_id=user_id,
+        tool_name="report",
+    )
 
     return {
         "report": response.content

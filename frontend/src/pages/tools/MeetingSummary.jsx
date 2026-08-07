@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 import { apiFetch } from "../../services/api";
-import toast from "react-hot-toast";
+import { usePage } from "../../context/PageContext";
 
 import "../../styles/ToolPages.css";
 
@@ -9,6 +10,20 @@ function MeetingSummary({ setActivePage }) {
   const [meetingNotes, setMeetingNotes] = useState("");
   const [summary, setSummary] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const { voiceResult, setVoiceResult } = usePage();
+
+  useEffect(() => {
+    if (!voiceResult) return;
+
+    if (voiceResult.action !== "meeting") return;
+
+    setMeetingNotes(voiceResult.meeting_notes || "");
+    setSummary(voiceResult.summary || "");
+
+    // Clear after loading
+    setVoiceResult(null);
+  }, [voiceResult]);
 
   async function generateSummary() {
     if (!meetingNotes.trim()) {

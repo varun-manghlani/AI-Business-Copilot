@@ -1,7 +1,6 @@
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
+import { usePage } from "../../context/PageContext";
 import { apiFetch } from "../../services/api";
-
 import "../../styles/ToolPages.css";
 import toast from "react-hot-toast";
 
@@ -14,6 +13,24 @@ function ReportGenerator({ setActivePage }) {
   const [generatedReport, setGeneratedReport] = useState("");
 
   const [loading, setLoading] = useState(false);
+
+  const { voiceResult, setVoiceResult } = usePage();
+
+  useEffect(() => {
+    if (!voiceResult) return;
+
+    if (voiceResult.action !== "report") return;
+
+    setReportType(voiceResult.report_type || "Weekly Report");
+    setProjectName(voiceResult.project_name || "");
+    setDetails(voiceResult.details || "");
+    setAudience(voiceResult.audience || "Management");
+
+    setGeneratedReport(voiceResult.report || "");
+
+    // Clear after using
+    setVoiceResult(null);
+  }, [voiceResult]);
 
   async function generateReport() {
     if (!projectName || !details) {
