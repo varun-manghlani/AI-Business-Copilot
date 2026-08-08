@@ -7,6 +7,7 @@ from models.message import Message
 from models.CompanyDocument import CompanyDocument
 from models.CompanySettings import CompanySettings
 from models.AIUsage import AIUsage
+from models.PasswordResetToken import PasswordResetToken
 
 Base.metadata.create_all(bind=engine)
 

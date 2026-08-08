@@ -70,8 +70,8 @@ function MeetingSummary({ setActivePage }) {
 
   return (
     <div className="tool-page">
-      <button className="back-btn" onClick={() => setActivePage("chat")}>
-        ← Back to Chat
+      <button className="back-btn" onClick={() => setActivePage("dashboard")}>
+        ← Back to Dashboard
       </button>
 
       <h1>📝 Meeting Summary</h1>

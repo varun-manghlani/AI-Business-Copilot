@@ -8,7 +8,7 @@ import AddUserModal from "../components/AddUserModal";
 import ChangePassword from "../components/ChangePassword";
 import { Toaster } from "react-hot-toast";
 
-function Settings() {
+function Settings({ user }) {
   const [profile, setProfile] = useState(null);
   const [users, setUsers] = useState([]);
   const [showAddUserModal, setShowAddUserModal] = useState(false);
@@ -117,26 +117,28 @@ function Settings() {
           </div>
         </div>
 
-        <div className="settings-card">
-          <div className="settings-users-header">
-            <h2>👥 User Management</h2>
+        {user?.role === "admin" && (
+          <div className="settings-card">
+            <div className="settings-users-header">
+              <h2>👥 User Management</h2>
 
-            <button
-              className="settings-button"
-              onClick={() => setShowAddUserModal(true)}
-            >
-              + Add User
-            </button>
+              <button
+                className="settings-button"
+                onClick={() => setShowAddUserModal(true)}
+              >
+                + Add User
+              </button>
+            </div>
+
+            {users.length === 0 ? (
+              <p>No users found.</p>
+            ) : (
+              users.map((user) => (
+                <UserCard key={user.id} user={user} onDelete={deleteUser} />
+              ))
+            )}
           </div>
-
-          {users.length === 0 ? (
-            <p>No users found.</p>
-          ) : (
-            users.map((user) => (
-              <UserCard key={user.id} user={user} onDelete={deleteUser} />
-            ))
-          )}
-        </div>
+        )}
 
         <div className="settings-card">
           <h2>🔐 Security</h2>

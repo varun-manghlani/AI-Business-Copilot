@@ -1,24 +1,41 @@
 import "../styles/ChatInput.css";
 
 function ChatInput({ input, setInput, sendMessage }) {
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    if (!input.trim()) {
+      return;
+    }
+
+    sendMessage();
+  }
+
+  function handleKeyDown(event) {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+
+      if (input.trim()) {
+        sendMessage();
+      }
+    }
+  }
+
   return (
-    <div className="chat-input-container">
-      <input
+    <form className="chat-input-container" onSubmit={handleSubmit}>
+      <textarea
         className="chat-input"
         placeholder="Ask anything..."
         value={input}
-        onChange={(e) => setInput(e.target.value)}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            sendMessage();
-          }
-        }}
+        onChange={(event) => setInput(event.target.value)}
+        onKeyDown={handleKeyDown}
+        rows={1}
       />
 
-      <button className="send-btn" onClick={sendMessage}>
+      <button type="submit" className="send-btn" disabled={!input.trim()}>
         Send
       </button>
-    </div>
+    </form>
   );
 }
 

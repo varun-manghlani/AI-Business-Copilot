@@ -1,37 +1,148 @@
 .chat-input-container {
+  width: 100%;
+
   display: flex;
-  gap: 15px;
-  padding: 20px 30px;
-  border-top: 1px solid #333;
+  align-items: flex-end;
+
+  gap: 10px;
+
+  padding: 14px 30px 18px;
+
+  box-sizing: border-box;
+
   background: #202123;
+
+  border-top: 1px solid #333;
 }
 
 .chat-input {
   flex: 1;
+
+  min-height: 54px;
+  max-height: 180px;
+
+  padding: 15px 100px 15px 17px;
+
+  box-sizing: border-box;
+
+  resize: none;
+
   background: #2f2f2f;
-  color: white;
+
+  color: #ffffff;
+
   border: 1px solid #444;
+
   border-radius: 12px;
-  padding: 15px;
-  font-size: 16px;
+
   outline: none;
+
+  font-family: inherit;
+
+  font-size: 15px;
+
+  line-height: 22px;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.chat-input::placeholder {
+  color: #8f9298;
 }
 
 .chat-input:focus {
   border-color: #2563eb;
+
+  background: #333437;
 }
+
+
+/* =========================================
+   SEND BUTTON
+========================================= */
 
 .send-btn {
-  width: 110px;
-  background: #2563eb;
-  color: white;
+  position: absolute;
+
+  right: 40px;
+
+  bottom: 27px;
+
+  min-width: 76px;
+
+  height: 38px;
+
+  padding: 0 14px;
+
   border: none;
-  border-radius: 12px;
+
+  border-radius: 8px;
+
+  background: #2563eb;
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
   cursor: pointer;
-  font-size: 16px;
-  transition: 0.2s;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    opacity 0.2s ease;
 }
 
-.send-btn:hover {
+.send-btn:hover:not(:disabled) {
   background: #1d4ed8;
+
+  transform: translateY(-1px);
+}
+
+.send-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.send-btn:disabled {
+  background: #3a3b3f;
+
+  color: #777a80;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+  .chat-input-container {
+    padding: 12px 14px;
+  }
+
+  .chat-input {
+    min-height: 50px;
+
+    padding-right: 85px;
+
+    font-size: 14px;
+  }
+
+  .send-btn {
+    right: 24px;
+
+    bottom: 20px;
+
+    min-width: 66px;
+
+    height: 34px;
+
+    font-size: 13px;
+  }
 }

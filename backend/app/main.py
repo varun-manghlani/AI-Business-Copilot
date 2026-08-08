@@ -13,7 +13,7 @@ from app.routers.meeting import router as meeting_router
 from app.routers.customer_support import router as customer_support_router
 from app.routers.analytics import router as analytics_router
 from app.routers.voice import router as voice_router
-
+from app.routers.dashboard import router as dashboard_router
 
 app = FastAPI()
 
@@ -48,3 +48,4 @@ app.include_router(meeting_router)
 app.include_router(customer_support_router)
 app.include_router(analytics_router)
 app.include_router(voice_router)
+app.include_router(dashboard_router)

@@ -11,25 +11,47 @@ import "../styles/ChatPage.css";
 function ChatPage({ messages, input, setInput, sendMessage, setActivePage }) {
   const [showAITools, setShowAITools] = useState(false);
 
+  function openVoiceAssistant() {
+    window.dispatchEvent(new CustomEvent("open-voice-assistant"));
+  }
+
   return (
     <>
-      <div className="header">
-        <div className="header-left">
-          <img src={logo} alt="AI Business Copilot" className="header-logo" />
+      {/* =========================
+          CHAT HEADER
+      ========================= */}
 
-          <span>AI Business Copilot</span>
-        </div>
+      <div className="chat-header">
+        <div className="chat-header-left">
+          <img
+            src={logo}
+            alt="AI Business Copilot"
+            className="chat-header-logo"
+          />
 
-        <div className="header-right">
-          <button className="ai-tools-btn" onClick={() => setShowAITools(true)}>
-            ✨ AI Workspace
-          </button>
+          <div className="chat-header-title">
+            <h1>AI Business Copilot</h1>
+
+            <span>Intelligent workspace assistant</span>
+          </div>
         </div>
       </div>
 
+      {/* =========================
+          CHAT WINDOW
+      ========================= */}
+
       <ChatWindow messages={messages} />
 
+      {/* =========================
+          CHAT INPUT
+      ========================= */}
+
       <ChatInput input={input} setInput={setInput} sendMessage={sendMessage} />
+
+      {/* =========================
+          AI TOOLS MODAL
+      ========================= */}
 
       {showAITools && (
         <AIToolsModal

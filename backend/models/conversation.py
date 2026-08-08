@@ -12,7 +12,9 @@ class Conversation(Base):
         primary_key=True,
     )
 
-    title: Mapped[str] = mapped_column(String)
+    title: Mapped[str] = mapped_column(
+        String
+    )
 
     thread_id: Mapped[str] = mapped_column(
         String,
@@ -24,6 +26,6 @@ class Conversation(Base):
     )
 
     user = relationship(
-    "User",
-    back_populates="conversations",
-)
+        "User",
+        back_populates="conversations",
+    )
